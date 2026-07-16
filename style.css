@@ -1,7 +1,7 @@
 /*
 Theme Name: SoftTechNews Astra Child
 Template: astra
-Version: 2.4.0
+Version: 2.5.0
 Description: Modern animated blog design for softtechnews.com, built on Astra.
 Author: SoftTechNews
 */
@@ -133,12 +133,19 @@ a:hover { color: var(--stn-accent-dark); }
 /* ==========================================================================
    Wider content container — reduce excess side whitespace
    ========================================================================== */
-.entry-content .wp-block-group.is-layout-constrained,
-.entry-content > .is-layout-constrained {
-  max-width: 1180px !important;
+.ast-container,
+.ast-container .ast-row,
+#primary.content-area,
+.site-content .ast-container {
+  max-width: 1360px !important;
+  width: 100% !important;
 }
-.ast-container {
-  max-width: 1320px !important;
+.entry-content .wp-block-group.is-layout-constrained,
+.entry-content > .is-layout-constrained,
+.entry-content .wp-block-cover .wp-block-group.is-layout-constrained {
+  max-width: 1240px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* ==========================================================================
@@ -236,9 +243,9 @@ a:hover { color: var(--stn-accent-dark); }
 }
 
 /* ==========================================================================
-   Post content readability
+   Post content readability (single posts only, not the homepage/pages)
    ========================================================================== */
-.entry-content {
+.single-post .entry-content {
   max-width: 740px;
   margin: 0 auto;
   font-size: 1.08em;
