@@ -1,7 +1,7 @@
 /*
 Theme Name: SoftTechNews Astra Child
 Template: astra
-Version: 2.3.0
+Version: 2.4.0
 Description: Modern animated blog design for softtechnews.com, built on Astra.
 Author: SoftTechNews
 */
@@ -131,12 +131,24 @@ a:hover { color: var(--stn-accent-dark); }
 }
 
 /* ==========================================================================
+   Wider content container — reduce excess side whitespace
+   ========================================================================== */
+.entry-content .wp-block-group.is-layout-constrained,
+.entry-content > .is-layout-constrained {
+  max-width: 1180px !important;
+}
+.ast-container {
+  max-width: 1320px !important;
+}
+
+/* ==========================================================================
    Blog grid cards (Gutenberg "Latest Posts" block)
    ========================================================================== */
-.wp-block-latest-posts.is-grid,
-.wp-block-latest-posts__list.is-grid {
-  gap: 1.75rem !important;
+.wp-block-latest-posts.is-grid {
   align-items: stretch !important;
+}
+.wp-block-latest-posts__list.is-grid.columns-3 li {
+  width: calc(33.33333% - 1.17em) !important;
 }
 .wp-block-latest-posts__list.is-grid li {
   display: flex !important;
@@ -147,9 +159,12 @@ a:hover { color: var(--stn-accent-dark); }
   overflow: hidden;
   box-shadow: var(--stn-shadow);
   padding: 0 0 1.25rem !important;
-  margin: 0 !important;
+  margin: 0 1.75rem 1.75rem 0 !important;
   transition: box-shadow 0.35s var(--stn-ease), transform 0.35s var(--stn-ease), border-color 0.35s ease;
   will-change: transform;
+}
+.wp-block-latest-posts__list.is-grid.columns-3 li:nth-child(3n) {
+  margin-right: 0 !important;
 }
 .wp-block-latest-posts__list.is-grid li:hover {
   box-shadow: var(--stn-shadow-hover);
