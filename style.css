@@ -1,7 +1,7 @@
 /*
 Theme Name: SoftTechNews Astra Child
 Template: astra
-Version: 2.5.0
+Version: 2.6.0
 Description: Modern animated blog design for softtechnews.com, built on Astra.
 Author: SoftTechNews
 */
@@ -283,6 +283,109 @@ footer.site-footer a[href*="instagram"], footer.site-footer a[href*="pinterest"]
 .site-footer a[href*="pinterest"]:hover {
   transform: translateY(-3px) scale(1.1);
   color: var(--stn-accent);
+}
+
+/* ==========================================================================
+   Archive / category grid cards (Astra native blog loop)
+   ========================================================================== */
+.ast-grid-3.ast-blog-layout-4-grid .ast-row {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  column-gap: 1.75rem !important;
+}
+.ast-article-post {
+  background: var(--stn-bg);
+  border: 1px solid var(--stn-border);
+  border-radius: var(--stn-radius) !important;
+  overflow: hidden;
+  box-shadow: var(--stn-shadow);
+  padding: 0 0 1.5rem !important;
+  transition: box-shadow 0.35s var(--stn-ease), transform 0.35s var(--stn-ease), border-color 0.35s ease;
+}
+.ast-article-post:hover {
+  box-shadow: var(--stn-shadow-hover);
+  transform: translateY(-6px);
+  border-color: transparent;
+}
+.ast-article-post .post-thumb-img-content {
+  overflow: hidden;
+  border-radius: var(--stn-radius) var(--stn-radius) 0 0;
+}
+.ast-article-post .post-thumb-img-content img {
+  transition: transform 0.5s var(--stn-ease);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+.ast-article-post:hover .post-thumb-img-content img {
+  transform: scale(1.08);
+}
+.ast-article-post .ast-taxonomy-container {
+  padding: 1rem 1.25rem 0;
+  display: block;
+}
+.ast-article-post .entry-title {
+  padding: 0.5rem 1.25rem 0;
+  font-size: 1.15rem;
+}
+.ast-article-post .entry-title a { color: var(--stn-text); }
+.ast-article-post .entry-title a:hover { color: var(--stn-accent); }
+.ast-article-post .entry-content,
+.ast-article-post .entry-meta {
+  padding: 0 1.25rem;
+}
+.ast-article-post .entry-content { max-width: 100% !important; margin: 0 !important; }
+
+/* Single-post archive: don't stretch card full width, keep a sane cap */
+.ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .ast-article-post {
+  max-width: 420px;
+}
+
+/* ==========================================================================
+   Sidebar widgets
+   ========================================================================== */
+#secondary .widget {
+  background: var(--stn-bg);
+  border: 1px solid var(--stn-border);
+  border-radius: var(--stn-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+  box-shadow: var(--stn-shadow);
+}
+#secondary .widget-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--stn-accent-light);
+}
+#secondary .widget ul { list-style: none; margin: 0; padding: 0; }
+#secondary .widget ul li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--stn-border);
+}
+#secondary .widget ul li:last-child { border-bottom: none; }
+#secondary .widget ul li a {
+  color: var(--stn-text);
+  font-weight: 600;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+#secondary .widget ul li a:hover {
+  color: var(--stn-accent);
+  padding-left: 4px;
+}
+#secondary .search-form input[type="search"] {
+  border: 1px solid var(--stn-border);
+  border-radius: var(--stn-radius-sm);
+  padding: 0.7em 1em;
+  width: 100%;
+  font-family: var(--stn-font);
+}
+#secondary .search-form input[type="submit"] {
+  margin-top: 0.6em;
+  width: 100%;
 }
 
 /* ==========================================================================
