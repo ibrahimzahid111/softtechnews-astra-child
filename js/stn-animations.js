@@ -1,7 +1,7 @@
 (function () {
   function markRevealTargets() {
     var targets = document.querySelectorAll(
-      '.ast-article-post, .entry-content > h2, .entry-content > h3, .entry-content > p, .entry-content > img, .entry-content > figure'
+      '.wp-block-latest-posts__list.is-grid > li, .entry-content > h2, .entry-content > h3, .entry-content > p, .entry-content > img, .entry-content > figure'
     );
     targets.forEach(function (el) {
       el.classList.add('stn-reveal');

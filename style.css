@@ -1,7 +1,7 @@
 /*
 Theme Name: SoftTechNews Astra Child
 Template: astra
-Version: 2.0.0
+Version: 2.1.0
 Description: Modern animated blog design for softtechnews.com, built on Astra.
 Author: SoftTechNews
 */
@@ -103,61 +103,94 @@ a:hover { color: var(--stn-accent-dark); }
 .main-header-menu a:hover::after { width: 100%; }
 
 /* ==========================================================================
-   Hero
+   Hero (Gutenberg Cover block with background image)
    ========================================================================== */
-.stn-hero,
-.ast-full-width-layout .hero-section,
-.entry-content > h1:first-child {
-  position: relative;
-}
-
-/* Animated gradient hero wrapper — applies to any hero/banner block near the top */
-.wp-block-cover.stn-hero-block,
-.hero, .site-hero {
-  background: linear-gradient(120deg, var(--stn-accent-light), var(--stn-bg-soft2), var(--stn-accent-light));
-  background-size: 200% 200%;
-  animation: stnGradientShift 12s ease infinite;
+.wp-block-cover {
   border-radius: 0 0 var(--stn-radius-lg) var(--stn-radius-lg);
+  overflow: hidden;
 }
-@keyframes stnGradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.wp-block-cover__image-background {
+  transition: transform 8s var(--stn-ease);
+  transform: scale(1.02);
+}
+.wp-block-cover:hover .wp-block-cover__image-background {
+  transform: scale(1.1);
+}
+.wp-block-cover .wp-block-heading {
+  animation: stnFadeUp 0.9s var(--stn-ease) both;
+}
+.wp-block-cover p {
+  animation: stnFadeUp 0.9s var(--stn-ease) 0.15s both;
+}
+.wp-block-cover .wp-block-button {
+  animation: stnFadeUp 0.9s var(--stn-ease) 0.3s both;
+}
+@keyframes stnFadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ==========================================================================
-   Blog grid cards
+   Blog grid cards (Gutenberg "Latest Posts" block)
    ========================================================================== */
-.ast-article-post {
+.wp-block-latest-posts.is-grid {
+  gap: 1.75rem !important;
+}
+.wp-block-latest-posts__list.is-grid li {
   background: var(--stn-bg);
   border: 1px solid var(--stn-border);
   border-radius: var(--stn-radius);
   overflow: hidden;
   box-shadow: var(--stn-shadow);
+  padding: 0 0 1.25rem !important;
   transition: box-shadow 0.35s var(--stn-ease), transform 0.35s var(--stn-ease), border-color 0.35s ease;
   will-change: transform;
 }
-.ast-article-post:hover {
+.wp-block-latest-posts__list.is-grid li:hover {
   box-shadow: var(--stn-shadow-hover);
   transform: translateY(-6px);
   border-color: transparent;
 }
-.ast-article-post img {
-  border-radius: var(--stn-radius) var(--stn-radius) 0 0;
-  transition: transform 0.5s var(--stn-ease);
-}
-.ast-article-post:hover img {
-  transform: scale(1.06);
-}
-.ast-article-post .ast-img-container {
+.wp-block-latest-posts__featured-image {
+  margin: 0 0 1rem !important;
   overflow: hidden;
   border-radius: var(--stn-radius) var(--stn-radius) 0 0;
 }
-.ast-article-post .entry-title a {
-  color: var(--stn-text);
+.wp-block-latest-posts__featured-image img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  transition: transform 0.5s var(--stn-ease);
+}
+.wp-block-latest-posts__list.is-grid li:hover .wp-block-latest-posts__featured-image img {
+  transform: scale(1.08);
+}
+.wp-block-latest-posts__post-title {
+  display: block;
+  padding: 0 1.25rem;
+  margin-top: 0.25rem;
+  color: var(--stn-text) !important;
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+.wp-block-latest-posts__post-title:hover { color: var(--stn-accent) !important; }
+.wp-block-latest-posts__post-date {
+  display: block;
+  padding: 0 1.25rem;
+  margin-top: 0.5rem;
+  color: var(--stn-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.wp-block-latest-posts__post-excerpt {
+  padding: 0 1.25rem;
+  margin-top: 0.5rem;
+  color: var(--stn-text-muted);
+}
+.wp-block-latest-posts__read-more {
   font-weight: 700;
 }
-.ast-article-post .entry-title a:hover { color: var(--stn-accent); }
 
 /* Scroll-reveal states (toggled by JS) */
 .stn-reveal {
@@ -275,6 +308,6 @@ input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .stn-reveal { opacity: 1; transform: none; transition: none; }
-  .hero, .site-hero, .wp-block-cover.stn-hero-block { animation: none; }
+  .wp-block-cover .wp-block-heading, .wp-block-cover p, .wp-block-cover .wp-block-button { animation: none; }
   * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
