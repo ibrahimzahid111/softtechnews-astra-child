@@ -1,7 +1,7 @@
 /*
 Theme Name: SoftTechNews Astra Child
 Template: astra
-Version: 2.1.0
+Version: 2.2.0
 Description: Modern animated blog design for softtechnews.com, built on Astra.
 Author: SoftTechNews
 */
@@ -133,16 +133,21 @@ a:hover { color: var(--stn-accent-dark); }
 /* ==========================================================================
    Blog grid cards (Gutenberg "Latest Posts" block)
    ========================================================================== */
-.wp-block-latest-posts.is-grid {
+.wp-block-latest-posts.is-grid,
+.wp-block-latest-posts__list.is-grid {
   gap: 1.75rem !important;
+  align-items: stretch !important;
 }
 .wp-block-latest-posts__list.is-grid li {
+  display: flex !important;
+  flex-direction: column;
   background: var(--stn-bg);
   border: 1px solid var(--stn-border);
   border-radius: var(--stn-radius);
   overflow: hidden;
   box-shadow: var(--stn-shadow);
   padding: 0 0 1.25rem !important;
+  margin: 0 !important;
   transition: box-shadow 0.35s var(--stn-ease), transform 0.35s var(--stn-ease), border-color 0.35s ease;
   will-change: transform;
 }
@@ -152,13 +157,26 @@ a:hover { color: var(--stn-accent-dark); }
   border-color: transparent;
 }
 .wp-block-latest-posts__featured-image {
+  position: relative;
+  width: 100% !important;
+  height: 0;
+  padding-top: 58%;
   margin: 0 0 1rem !important;
   overflow: hidden;
   border-radius: var(--stn-radius) var(--stn-radius) 0 0;
 }
+.wp-block-latest-posts__featured-image a {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
 .wp-block-latest-posts__featured-image img {
-  width: 100%;
-  height: 190px;
+  position: absolute !important;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  max-height: none !important;
   object-fit: cover;
   transition: transform 0.5s var(--stn-ease);
 }
@@ -173,6 +191,7 @@ a:hover { color: var(--stn-accent-dark); }
   font-weight: 700;
   font-size: 1.05rem;
   line-height: 1.4;
+  text-decoration: none !important;
 }
 .wp-block-latest-posts__post-title:hover { color: var(--stn-accent) !important; }
 .wp-block-latest-posts__post-date {
@@ -186,10 +205,13 @@ a:hover { color: var(--stn-accent-dark); }
 .wp-block-latest-posts__post-excerpt {
   padding: 0 1.25rem;
   margin-top: 0.5rem;
+  margin-bottom: 0;
   color: var(--stn-text-muted);
+  flex-grow: 1;
 }
 .wp-block-latest-posts__read-more {
   font-weight: 700;
+  text-decoration: none !important;
 }
 
 /* Scroll-reveal states (toggled by JS) */
