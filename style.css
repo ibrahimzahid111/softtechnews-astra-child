@@ -1,7 +1,7 @@
 /*
 Theme Name: SoftTechNews Astra Child
 Template: astra
-Version: 2.8.0
+Version: 2.9.0
 Description: Modern animated blog design for softtechnews.com, built on Astra.
 Author: SoftTechNews
 */
@@ -313,14 +313,8 @@ footer.site-footer a[href*="instagram"], footer.site-footer a[href*="pinterest"]
 }
 
 /* ==========================================================================
-   Archive / category grid cards (Astra native blog loop)
+   Archive / category grid cards (Astra native blog loop — float/percentage grid, do not flex/grid-ify it)
    ========================================================================== */
-.ast-grid-3.ast-blog-layout-4-grid .ast-row {
-  display: flex !important;
-  flex-wrap: wrap;
-  gap: 1.75rem;
-  column-gap: 1.75rem !important;
-}
 .ast-article-post {
   background: var(--stn-bg);
   border: 1px solid var(--stn-border);
@@ -328,6 +322,7 @@ footer.site-footer a[href*="instagram"], footer.site-footer a[href*="pinterest"]
   overflow: hidden;
   box-shadow: var(--stn-shadow);
   padding: 0 0 1.5rem !important;
+  margin-bottom: 1.75rem !important;
   transition: box-shadow 0.35s var(--stn-ease), transform 0.35s var(--stn-ease), border-color 0.35s ease;
 }
 .ast-article-post:hover {
