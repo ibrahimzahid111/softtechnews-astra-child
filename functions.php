@@ -21,4 +21,12 @@ add_action('wp_enqueue_scripts', function () {
         [$parent_style, 'stn-google-fonts'],
         wp_get_theme()->get('Version')
     );
+
+    wp_enqueue_script(
+        'stn-animations',
+        get_stylesheet_directory_uri() . '/js/stn-animations.js',
+        [],
+        wp_get_theme()->get('Version'),
+        true
+    );
 });

@@ -1,8 +1,8 @@
 /*
 Theme Name: SoftTechNews Astra Child
 Template: astra
-Version: 1.0.0
-Description: Custom modern blog design child theme for softtechnews.com, built on Astra.
+Version: 2.0.0
+Description: Modern animated blog design for softtechnews.com, built on Astra.
 Author: SoftTechNews
 */
 
@@ -11,108 +11,270 @@ Author: SoftTechNews
    ========================================================================== */
 :root {
   --stn-bg: #ffffff;
-  --stn-bg-soft: #f7f8fa;
-  --stn-text: #1a1a1a;
+  --stn-bg-soft: #f6f7fb;
+  --stn-bg-soft2: #eef1f8;
+  --stn-text: #14161f;
   --stn-text-muted: #5b6472;
-  --stn-accent: #2563eb;
-  --stn-accent-dark: #1d4ed8;
+  --stn-accent: #2f5bff;
+  --stn-accent-dark: #1e40e0;
+  --stn-accent-light: #eef2ff;
+  --stn-accent2: #ff5b7a;
   --stn-border: #e7e9ee;
-  --stn-radius: 14px;
+  --stn-radius-sm: 10px;
+  --stn-radius: 18px;
+  --stn-radius-lg: 28px;
+  --stn-shadow: 0 1px 2px rgba(20,22,31,0.04), 0 8px 24px rgba(20,22,31,0.06);
+  --stn-shadow-hover: 0 20px 45px rgba(47,91,255,0.16);
   --stn-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --stn-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--stn-bg);
   color: var(--stn-text);
   font-family: var(--stn-font);
   font-size: 17px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
-/* Headings */
+/* ==========================================================================
+   Headings & type scale
+   ========================================================================== */
 h1, h2, h3, h4, .entry-title, .site-title {
   font-family: var(--stn-font);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: var(--stn-text);
+  line-height: 1.15;
 }
 
-/* Links & accent */
+h2 { font-size: clamp(1.6rem, 2.4vw, 2.2rem); margin-bottom: 0.6em; }
+
 a {
   color: var(--stn-accent);
-  transition: color 0.15s ease;
+  transition: color 0.2s ease;
 }
-a:hover {
-  color: var(--stn-accent-dark);
-}
+a:hover { color: var(--stn-accent-dark); }
 
-/* Buttons */
-.ast-button, button, .wp-block-button__link {
-  background: var(--stn-accent) !important;
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.ast-button, button, .wp-block-button__link, input[type="submit"] {
+  background: linear-gradient(135deg, var(--stn-accent), var(--stn-accent-dark)) !important;
+  color: #fff !important;
   border-radius: 999px !important;
-  padding: 0.7em 1.6em !important;
-  font-weight: 600 !important;
+  padding: 0.85em 1.8em !important;
+  font-weight: 700 !important;
   border: none !important;
-  transition: transform 0.15s ease, background 0.15s ease;
+  box-shadow: 0 8px 20px rgba(47,91,255,0.28);
+  transition: transform 0.25s var(--stn-ease), box-shadow 0.25s var(--stn-ease);
 }
-.ast-button:hover, button:hover, .wp-block-button__link:hover {
-  background: var(--stn-accent-dark) !important;
-  transform: translateY(-1px);
+.ast-button:hover, button:hover, .wp-block-button__link:hover, input[type="submit"]:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 30px rgba(47,91,255,0.36);
 }
+.ast-button:active, button:active { transform: translateY(0) scale(0.98); }
 
-/* Header */
+/* ==========================================================================
+   Header
+   ========================================================================== */
 .ast-primary-header-bar {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px) saturate(160%);
   border-bottom: 1px solid var(--stn-border);
+  transition: box-shadow 0.3s ease;
+}
+.main-header-menu a {
+  font-weight: 600;
+  position: relative;
+}
+.main-header-menu a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 0; height: 2px;
+  background: var(--stn-accent);
+  transition: width 0.25s var(--stn-ease);
+}
+.main-header-menu a:hover::after { width: 100%; }
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.stn-hero,
+.ast-full-width-layout .hero-section,
+.entry-content > h1:first-child {
+  position: relative;
 }
 
-/* Blog grid cards */
+/* Animated gradient hero wrapper — applies to any hero/banner block near the top */
+.wp-block-cover.stn-hero-block,
+.hero, .site-hero {
+  background: linear-gradient(120deg, var(--stn-accent-light), var(--stn-bg-soft2), var(--stn-accent-light));
+  background-size: 200% 200%;
+  animation: stnGradientShift 12s ease infinite;
+  border-radius: 0 0 var(--stn-radius-lg) var(--stn-radius-lg);
+}
+@keyframes stnGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ==========================================================================
+   Blog grid cards
+   ========================================================================== */
 .ast-article-post {
   background: var(--stn-bg);
   border: 1px solid var(--stn-border);
   border-radius: var(--stn-radius);
   overflow: hidden;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--stn-shadow);
+  transition: box-shadow 0.35s var(--stn-ease), transform 0.35s var(--stn-ease), border-color 0.35s ease;
+  will-change: transform;
 }
 .ast-article-post:hover {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-  transform: translateY(-3px);
+  box-shadow: var(--stn-shadow-hover);
+  transform: translateY(-6px);
+  border-color: transparent;
 }
 .ast-article-post img {
   border-radius: var(--stn-radius) var(--stn-radius) 0 0;
+  transition: transform 0.5s var(--stn-ease);
+}
+.ast-article-post:hover img {
+  transform: scale(1.06);
+}
+.ast-article-post .ast-img-container {
+  overflow: hidden;
+  border-radius: var(--stn-radius) var(--stn-radius) 0 0;
+}
+.ast-article-post .entry-title a {
+  color: var(--stn-text);
+  font-weight: 700;
+}
+.ast-article-post .entry-title a:hover { color: var(--stn-accent); }
+
+/* Scroll-reveal states (toggled by JS) */
+.stn-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--stn-ease), transform 0.7s var(--stn-ease);
+}
+.stn-reveal.stn-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Post content readability */
+/* ==========================================================================
+   Post content readability
+   ========================================================================== */
 .entry-content {
-  max-width: 720px;
+  max-width: 740px;
   margin: 0 auto;
+  font-size: 1.08em;
 }
-.entry-content p {
-  margin-bottom: 1.4em;
-}
+.entry-content p { margin-bottom: 1.5em; }
 .entry-content img {
   border-radius: var(--stn-radius);
+  box-shadow: var(--stn-shadow);
+}
+.entry-content h2, .entry-content h3 {
+  margin-top: 1.6em;
+  scroll-margin-top: 100px;
+}
+.entry-content blockquote {
+  border-left: 4px solid var(--stn-accent);
+  background: var(--stn-accent-light);
+  padding: 1em 1.4em;
+  border-radius: 0 var(--stn-radius-sm) var(--stn-radius-sm) 0;
+  font-style: normal;
 }
 
-/* Footer */
+/* ==========================================================================
+   Footer
+   ========================================================================== */
 .site-footer, footer.site-footer {
   background: var(--stn-bg-soft);
   border-top: 1px solid var(--stn-border);
 }
-
-/* Category / tag badges */
-.ast-taxonomy-container a {
-  background: var(--stn-bg-soft);
-  border-radius: 999px;
-  padding: 0.3em 0.9em;
-  font-size: 0.8em;
-  font-weight: 600;
-  color: var(--stn-text-muted);
+.site-footer a { font-weight: 500; }
+.site-footer svg, .site-footer .fa, footer.site-footer a[href*="facebook"],
+footer.site-footer a[href*="instagram"], footer.site-footer a[href*="pinterest"] {
+  transition: transform 0.25s var(--stn-ease), color 0.25s ease;
 }
+.site-footer a[href*="facebook"]:hover, .site-footer a[href*="instagram"]:hover,
+.site-footer a[href*="pinterest"]:hover {
+  transform: translateY(-3px) scale(1.1);
+  color: var(--stn-accent);
+}
+
+/* ==========================================================================
+   Category / tag badges
+   ========================================================================== */
+.ast-taxonomy-container a {
+  background: var(--stn-accent-light);
+  color: var(--stn-accent-dark);
+  border-radius: 999px;
+  padding: 0.35em 1em;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.ast-taxonomy-container a:hover {
+  background: var(--stn-accent);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Forms (contact page etc.)
+   ========================================================================== */
+input[type="text"], input[type="email"], textarea {
+  border: 1px solid var(--stn-border) !important;
+  border-radius: var(--stn-radius-sm) !important;
+  padding: 0.9em 1em !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--stn-font);
+}
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+  border-color: var(--stn-accent) !important;
+  box-shadow: 0 0 0 4px var(--stn-accent-light) !important;
+  outline: none;
+}
+
+/* ==========================================================================
+   Misc polish
+   ========================================================================== */
+::selection {
+  background: var(--stn-accent);
+  color: #fff;
+}
+
+/* Back-to-top button */
+.ast-scroll-top {
+  border-radius: 50% !important;
+  box-shadow: 0 10px 24px rgba(47,91,255,0.3) !important;
+  transition: transform 0.25s var(--stn-ease) !important;
+}
+.ast-scroll-top:hover { transform: translateY(-4px) scale(1.08) !important; }
 
 /* Mobile spacing */
 @media (max-width: 768px) {
   body { font-size: 16px; }
   .entry-content { padding: 0 1rem; }
+  .ast-article-post:hover { transform: translateY(-3px); }
+}
+
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .stn-reveal { opacity: 1; transform: none; transition: none; }
+  .hero, .site-hero, .wp-block-cover.stn-hero-block { animation: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
