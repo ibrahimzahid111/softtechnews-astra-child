@@ -1,7 +1,7 @@
 /*
 Theme Name: SoftTechNews Astra Child
 Template: astra
-Version: 2.6.0
+Version: 2.7.0
 Description: Modern animated blog design for softtechnews.com, built on Astra.
 Author: SoftTechNews
 */
@@ -286,6 +286,33 @@ footer.site-footer a[href*="instagram"], footer.site-footer a[href*="pinterest"]
 }
 
 /* ==========================================================================
+   Archive header (category/tag/author title, injected via functions.php)
+   ========================================================================== */
+.stn-archive-header {
+  max-width: 1360px;
+  margin: 2.5rem auto 0.5rem;
+  padding: 0 1.5rem;
+}
+.stn-archive-title {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  margin-bottom: 0.4em;
+}
+.stn-archive-title::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 1em;
+  background: var(--stn-accent);
+  border-radius: 3px;
+  margin-right: 0.6em;
+  vertical-align: -0.1em;
+}
+.stn-archive-description {
+  color: var(--stn-text-muted);
+  max-width: 640px;
+}
+
+/* ==========================================================================
    Archive / category grid cards (Astra native blog loop)
    ========================================================================== */
 .ast-grid-3.ast-blog-layout-4-grid .ast-row {
@@ -338,9 +365,20 @@ footer.site-footer a[href*="instagram"], footer.site-footer a[href*="pinterest"]
 }
 .ast-article-post .entry-content { max-width: 100% !important; margin: 0 !important; }
 
-/* Single-post archive: don't stretch card full width, keep a sane cap */
+/* Single-post archive: render as one wide featured card instead of a small lonely box */
+.ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .ast-article-post {
-  max-width: 420px;
+  width: 100%;
+}
+.ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .post-thumb-img-content img {
+  aspect-ratio: 21 / 9;
+}
+.ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .entry-title {
+  font-size: 1.5rem;
 }
 
 /* ==========================================================================

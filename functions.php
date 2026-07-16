@@ -30,3 +30,15 @@ add_action('wp_enqueue_scripts', function () {
         true
     );
 });
+
+add_action('astra_content_top', function () {
+    if (!is_category() && !is_tag() && !is_author()) {
+        return;
+    }
+    echo '<header class="stn-archive-header"><h1 class="stn-archive-title">' . get_the_archive_title() . '</h1>';
+    $description = get_the_archive_description();
+    if ($description) {
+        echo '<div class="stn-archive-description">' . wp_kses_post($description) . '</div>';
+    }
+    echo '</header>';
+});
