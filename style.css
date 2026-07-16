@@ -1,7 +1,7 @@
 /*
 Theme Name: SoftTechNews Astra Child
 Template: astra
-Version: 2.7.0
+Version: 2.8.0
 Description: Modern animated blog design for softtechnews.com, built on Astra.
 Author: SoftTechNews
 */
@@ -365,20 +365,38 @@ footer.site-footer a[href*="instagram"], footer.site-footer a[href*="pinterest"]
 }
 .ast-article-post .entry-content { max-width: 100% !important; margin: 0 !important; }
 
-/* Single-post archive: render as one wide featured card instead of a small lonely box */
-.ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) {
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
+/* Single-post archive: render as one wide featured card spanning the content column */
 .ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .ast-article-post {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .post-thumb-img-content {
+  width: 45%;
+  flex-shrink: 0;
+  border-radius: var(--stn-radius) 0 0 var(--stn-radius);
 }
 .ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .post-thumb-img-content img {
-  aspect-ratio: 21 / 9;
+  aspect-ratio: auto;
+  height: 100%;
+}
+.ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .post-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .entry-title {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+}
+@media (max-width: 767px) {
+  .ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .ast-article-post {
+    flex-direction: column;
+  }
+  .ast-grid-3.ast-blog-layout-4-grid .ast-row:has(> :only-child) .post-thumb-img-content {
+    width: 100%;
+    border-radius: var(--stn-radius) var(--stn-radius) 0 0;
+  }
 }
 
 /* ==========================================================================
